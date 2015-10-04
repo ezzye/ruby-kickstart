@@ -6,5 +6,10 @@
 #
 
 def odds_and_evens(string, return_odds)
-
+  result = []
+  string.chars.each_with_index {|x,i| i.odd? ? result << x : ''} if return_odds
+  string.chars.each_with_index {|x,i| i.even? ? result << x : ''} if !return_odds
+  result*''
 end
+
+# p odds_and_evens("abcd", true)
