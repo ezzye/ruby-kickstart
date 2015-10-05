@@ -24,7 +24,15 @@
 # USER:     BYE
 
 def deaf_grandma
-
+  while true
+    input = gets.chomp
+    break if input == "BYE"
+    if input.match(/[a-z]/) || input.gsub(" ","").empty?
+      puts "HUH?! SPEAK UP, SONNY!"
+    else
+      puts "NO, NOT SINCE 1938!"
+    end
+  end
 end
 
 

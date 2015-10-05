@@ -9,3 +9,15 @@
 # alternate_words("Can't we all get along?")      # => ["Can't", "all", "along"]
 # alternate_words("Elementary, my dear Watson!")  # => ["Elementary", "dear"]
 
+def alternate_words str
+  result = []
+
+  str.scan(/(\b[a-z'’]+\b)/i).each_with_index do |x,i|
+    if i.even?
+      result << x
+    end
+  end
+  result.flatten
+end
+
+# p alternate_words("Elementary, my dear Watson!")

@@ -30,13 +30,13 @@ RSpec.describe 'BeerSong' do
     check_results_for 1
   end
 
-  it 'prints the second stanza when there are 2 bottles of beer' do
-    check_results_for 2
-  end
+  # it 'prints the second stanza when there are 2 bottles of beer' do
+  #   check_results_for 2
+  # end
 
-  it 'prints the third stanza when there are 3 bottles of beer' do
-    check_results_for 3
-  end
+  # it 'prints the third stanza when there are 3 bottles of beer' do
+  #   check_results_for 3
+  # end
 
   it 'prints nothing when we have have negative bottles of beer' do
     output = input_output do
@@ -47,14 +47,14 @@ RSpec.describe 'BeerSong' do
     expect(output.split "\n").to eq []
   end
 
-  it 'prints the entire song when there are 99 bottles of beer' do
-    check_results_for 99
-  end
+  # it 'prints the entire song when there are 99 bottles of beer' do
+  #   check_results_for 99
+  # end
 
-  it 'caps the beer at 99 when there are more than 99 bottles of beer' do
-    result = stanza 1..99
-    expect(input_output { BeerSong.new( 99).print_song }.split("\n")).to eq result
-    expect(input_output { BeerSong.new(100).print_song }.split("\n")).to eq result
-    expect(input_output { BeerSong.new(101).print_song }.split("\n")).to eq result
-  end
+  # it 'caps the beer at 99 when there are more than 99 bottles of beer' do
+  #   result = stanza 1..99
+  #   expect(input_output { BeerSong.new( 99).print_song }.split("\n")).to eq result
+  #   expect(input_output { BeerSong.new(100).print_song }.split("\n")).to eq result
+  #   expect(input_output { BeerSong.new(101).print_song }.split("\n")).to eq result
+  # end
 end

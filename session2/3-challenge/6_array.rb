@@ -15,3 +15,18 @@
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
 
+def prime_chars? ary
+  sum_char = ary.map {|s| s.length}.inject(0) {|m,x| x+m}
+  is_prime? sum_char
+end
+
+def is_prime? number, increment=3
+  return false if number == 1
+  return true if number == 2
+  return false if number.even?
+  return true if number == increment
+  return false if number % increment == 0
+  is_prime? number, increment+2
+end
+
+# p prime_chars? ['ab', 'c']

@@ -7,6 +7,9 @@
 
 class String
   def every_other_char
+    self.chars.reject.with_index {|c,i| i.odd?}*""
   end
-  
+
 end
+
+# p "abcdefg".every_other_char

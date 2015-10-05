@@ -8,5 +8,15 @@
 
 # This time you will have to define the method, it's called: get_squares
 
+def get_squares ary
+  result = []
+  ary.each do |x|
+    if ary.include?(x**2)
+      result << x
+    end
+  end
+  result.sort
+end
 
+# p  get_squares [9,3,81]
 
