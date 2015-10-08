@@ -19,3 +19,19 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(opposites_attract, *elements)
+  to_return = []
+  elements.each_slice 2 do |first, last|
+    first  = !!first # force to bool
+    last   = !!last # force to bool
+    result = if opposites_attract
+               first != last
+             else
+               first == last
+             end
+    to_return << result
+  end
+  to_return
+end
+
+p match_maker true,  true,  true, false, true

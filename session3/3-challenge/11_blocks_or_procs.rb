@@ -31,6 +31,20 @@
 #   end
 # end
 
+def array_init(size=5, &block)
+  block ||= Proc.new { |i| (100 * i).to_s }
+  Array.new(size,&block)
+end
+
+
+ # p array_init(2) { |i| i.to_s }
+ # p array_init { |i| i.to_s }
+ # block ||= Proc.new { |i| (100 * i).to_s }
+ # p Array.new(10,&Proc.new { |i| (100 * i).to_s })
+
+
+
+
 
 
 

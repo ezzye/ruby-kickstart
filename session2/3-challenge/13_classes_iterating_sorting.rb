@@ -68,46 +68,63 @@
 require 'date'
 
 class User
-  attr_accessor 'username'
+  attr_accessor :username, :blogs
 
   def initialize (username)
-    @username = username
+    self.username = username
+    self.blogs = []
   end
 
   def add_blog(date,text)
-    Blog.new date, self.username, text
+    added_blog = Blog.new date, self, text
+    blogs << added_blog
+    self.blogs = blogs.sort_by {|blog| blog.date}.reverse
+    added_blog
   end
 
-  def blogs
-    ary = []
-    return ary #array of all blogs the user has written in reverse chronological order (newest first)
-  end
 
 end
 
 class Blog
 
-  attr_accessor 'text' , 'date' , 'user'
+  attr_accessor  :date , :user, :text
 
   def initialize(date,user,text)
-    @date = date
-    @user = user
-    @text = text
+    self.date = date
+    self.user = user
+    self.text = text
   end
 
   def summary
-
-    return #first 10 words from the text (or the entire text if it is less than 10 words)
+    text.split[0..9].join(' ')
   end
 
   def ==(other)
-    return self.date == other.date && self.text == other.text && self.user == other.user
+    date == other.date && text == other.text && user == other.user
   end
 
+  def entry
+    "#{user.username} #{date}\n#{text}"
+  end
 
 end
 
 lissa = User.new 'QTSort'
-p lissa.username
-p lissa.blogs
+lissa.username
+lissa.blogs
 lissa.add_blog Date.parse("2010-05-28") , "Sailor Mars is my favourite"
+lissa.blogs
+blog1 = lissa.blogs.first
+blog1.user
+blog2 = Blog.new Date.parse("2007-01-02"), lissa, "Going dancing!"
+blog3 = Blog.new Date.parse("2006-01-02"), lissa, "For the last time, fuck facebook >.<"
+blog4 = Blog.new Date.parse("2010-01-02"), lissa, "Got a new job, cuz I'm pretty much the best ^_^"
+p lissa.blogs
+blog5 = Blog.new Date.today, lissa, <<BLOG_ENTRY
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce orci nunc, porta non tristique eu, auctor tincidunt mauris.
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vitae nibh sapien. Curabitur
+eget eros bibendum justo congue auctor non at turpis. Aenean feugiat vestibulum mi ac pulvinar. Fusce ut felis justo, in
+porta lectus.
+BLOG_ENTRY
+p blog5.summary
+p blog5.entry
